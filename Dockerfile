@@ -6,6 +6,4 @@ COPY . .
 
 RUN npm install
 
-HEALTHCHECK CMD curl --fail http://localhost:8055 || exit 1
-
-CMD [ "node", "./api.js" ]
+CMD [ "node", "./index.js" ]

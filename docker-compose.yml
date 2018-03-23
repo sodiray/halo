@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  halo:
+    build:
+      context: .
+    restart: always
+    volumes:
+      - .:/usr/src/halo
+    ports:
+      - "8055:8055"
+    healthcheck:
+      test: curl --fail http://localhost:8055/api/ping || exit 1
+    networks:
+      - oaknet
+
+networks:
+  oaknet:
+    driver: "bridge"

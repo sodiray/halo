@@ -15,8 +15,8 @@ class Halo {
     let key = req.params.key;
     let value = this.store.get(key);
 
-    res.send({ code: 2000, message: "success", key: key, value: value });
-    
+    res.send({ code: 2000, message: "Successfully retrieved value ", key: key, value: value });
+
   }
 
   setValue(req, res) {
@@ -26,7 +26,7 @@ class Halo {
 
     this.store.put(key, value);
 
-    res.send({ code: 2000, message: "success" });
+    res.send({ code: 2000, message: "Successfully stored value" });
 
   }
 
