@@ -1,0 +1,20 @@
+{
+  "name": "halo",
+  "version": "0.1.0",
+  "description": "A master chief app that manages application settings as json. The commander of your distributed system. Inspired by the KV segment of consul.io.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "halo"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "node-storage": "0.0.7"
+  }
+}
