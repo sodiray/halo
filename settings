@@ -1,1 +1,1 @@
-{"dev":{"warehouse":{"token":"yolo","nats":{"url":"nats.com","port":4222}},"northpole":{"token":"lovko","nats":{"url":"othernats","port":6222}}}}
+{"dev":{"warehouse":{"token":"yolo","nats":{"url":"nats.com","port":4222}},"northpole":{"token":"lovko","nats":{"url":"othernats","port":6222}}},"halo":{"warehouse":{"token":"yolo","nats":{"url":"nats.com","port":4222}},"northpole":{"token":"lovko","nats":{"url":"othernats","port":6222}}}}

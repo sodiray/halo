@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/usr/src/halo
     ports:
-      - "8055:8055"
+      - "8058:8058"
     healthcheck:
       test: curl --fail http://localhost:8055/api/ping || exit 1
     networks:

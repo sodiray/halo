@@ -6,7 +6,7 @@ let Storage = require('node-storage');
 
 let api = express();
 
-api.set('port', 8055);
+api.set('port', 8058);
 
 /*
 *   Setup Logging
@@ -40,8 +40,14 @@ let Halo = require('./halo');
 let halo = new Halo(store);
 
 api.get('/api/ping', (req, res) => res.send({ code: 2000, message: "pong" }));
-api.get('/api/v1/kv/:key', (req, res) => halo.getValue(req, res));
-api.put('/api/v1/kv/:key', (req, res) => halo.setValue(req, res));
+
+api.get('/api/v1/kv/:key?', (req, res) => halo.getValue(req, res));
+api.put('/api/v1/kv/:key?', (req, res) => halo.setValue(req, res));
+
+
+// api.get(/\/api\/v1\/kv\/?(.+)?/, (req, res) => halo.getValue(req, res));
+// api.put(/\/api\/v1\/kv\/?(.+)?/, (req, res) => halo.setValue(req, res));
+
 
 /*
 *   Setup 404 Response
