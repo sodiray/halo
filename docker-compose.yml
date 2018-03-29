@@ -12,9 +12,3 @@ services:
       - "8058:8058"
     healthcheck:
       test: curl --fail http://localhost:8055/api/ping || exit 1
-    networks:
-      - oaknet
-
-networks:
-  oaknet:
-    driver: "bridge"
