@@ -45,10 +45,6 @@ api.get('/api/v1/kv/:key?', (req, res) => halo.getValue(req, res));
 api.put('/api/v1/kv/:key?', (req, res) => halo.setValue(req, res));
 
 
-// api.get(/\/api\/v1\/kv\/?(.+)?/, (req, res) => halo.getValue(req, res));
-// api.put(/\/api\/v1\/kv\/?(.+)?/, (req, res) => halo.setValue(req, res));
-
-
 /*
 *   Setup 404 Response
 */
