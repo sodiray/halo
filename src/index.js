@@ -37,7 +37,7 @@ api.use(bodyParser.json());
 /*
 *   Setup Storage & Service
 */
-let store = new Storage('./settings');
+let store = new Storage('./configuration.json');
 let halo = new Halo(store);
 
 init(store);
