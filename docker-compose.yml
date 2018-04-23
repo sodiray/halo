@@ -8,7 +8,8 @@ services:
     restart: always
     volumes:
       - .:/usr/src/halo
-      - ./test/init.yml:/usr/src/halo/init.d
+    environment:
+      - HALO_AUTH_SECRET=mylittlesecret
     ports:
       - "8058:8058"
     healthcheck:

@@ -6,6 +6,7 @@ let Storage = require('node-storage');
 
 let Halo = require('./halo');
 let init = require('./init');
+let auth = require('./auth');
 
 let api = express();
 
@@ -31,6 +32,11 @@ api.use((req, res, next) => {
     res.send({ code: 4000, message: error.message });
   }
 });
+
+/*
+*   Setup Authentication
+*/
+api.use(auth.authenticate());
 
 api.use(bodyParser.json());
 
