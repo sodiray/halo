@@ -10,6 +10,7 @@ module.exports = function(store) {
     initFile = fs.readFileSync('./init.d', 'utf8');
   } catch (error) {
     console.log('INIT: No init file found');
+    store.put('halo', {});
     return;
   }
 
@@ -27,6 +28,8 @@ module.exports = function(store) {
 
   if (!value) {
     console.log("INIT: Failed to parse init.d");
+    store.put('halo', {});
+    return;
   }
 
   let key = process.env.HALO_INIT_KEY ?
