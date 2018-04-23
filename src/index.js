@@ -4,6 +4,9 @@ let path = require('path');
 
 let Storage = require('node-storage');
 
+let Halo = require('./halo');
+let init = require('./init');
+
 let api = express();
 
 api.set('port', 8058);
@@ -35,9 +38,9 @@ api.use(bodyParser.json());
 *   Setup Storage & Service
 */
 let store = new Storage('./settings');
-
-let Halo = require('./halo');
 let halo = new Halo(store);
+
+init(store);
 
 api.get('/api/ping', (req, res) => res.send({ code: 2000, message: "pong" }));
 

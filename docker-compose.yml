@@ -8,6 +8,7 @@ services:
     restart: always
     volumes:
       - .:/usr/src/halo
+      - ./test/init.yml:/usr/src/halo/init.d
     ports:
       - "8058:8058"
     healthcheck:
