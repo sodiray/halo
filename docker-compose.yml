@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/usr/src/halo
     environment:
-      - HALO_AUTH_SECRET=mylittlesecret
+      - HALO_AUTH_SECRET=bubbles
     ports:
       - "8058:8058"
     healthcheck:

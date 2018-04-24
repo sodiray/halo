@@ -23,20 +23,15 @@ api.use((req, res, next) => {
 /*
 *   Setup Error Handling
 */
-api.use((req, res, next) => {
+api.use((err, req, res, next) => {
   try {
     next();
   } catch(error) {
-    console.log(`Error: ${error.message}`);
+    console.log(`Error: ${err}`);
     res.status(400);
     res.send({ code: 4000, message: error.message });
   }
 });
-
-/*
-*   Setup Authentication
-*/
-api.use(auth.authenticate());
 
 api.use(bodyParser.json());
 
@@ -48,10 +43,13 @@ let halo = new Halo(store);
 
 init(store);
 
+api.use('/static', express.static(path.join(__dirname, 'static')));
+api.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'));
+
 api.get('/api/ping', (req, res) => res.send({ code: 2000, message: "pong" }));
 
-api.get('/api/v1/kv/:key?', (req, res) => halo.getValue(req, res));
-api.put('/api/v1/kv/:key?', (req, res) => halo.setValue(req, res));
+api.get('/api/v1/kv/:key?', auth, (req, res) => halo.getValue(req, res));
+api.put('/api/v1/kv/:key?', auth, (req, res) => halo.setValue(req, res));
 
 
 /*
@@ -67,5 +65,5 @@ api.use((req, res, next) => {
 *   Start Service
 */
 api.listen(api.get('port'), function() {
-  console.log('app running on port', api.get('port'));
+  console.log('api running on port', api.get('port'));
 });

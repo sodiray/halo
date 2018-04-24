@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Halo</title>
+    <link rel="stylesheet" href="/static/main.css" />
+  </head>
+  <body>
+    <header><h1>Halo</h1></header>
+    <div class="flex-wrapper-center">
+      <div class="auth-view" data-view="auth">
+        <h2>Secret</h2>
+        <span id="authError" class="error hidden">Incorrect Secret</span>
+        <input type="password" id="authPassword" placeholder="mylittlesecret"/>
+        <button id="authSubmit">Authenticate</button>
+      </div>
+      <div class="store-view" data-view="store">
+        <h2>KV Store</h2>
+        <div>
+          <span id="storeBreadcrumb"></span>
+        </div>
+        <div class="flex-wrapper-eq-col">
+          <div class="store-current">
+            <span>Current</span>
+            <div>
+              <button id="storeCurrentBackButton">Back</button>
+              <ul id="storeCurrentOutlet">
+                <!-- Rendered by template -->
+                <!-- <li>property</li> -->
+              </ul>
+              <button id="storeNewKeyButton">New</button>
+              <div id="storeNewKeyForm">
+                <input id="storeNewKeyInput" type="text"/>
+                <div>
+                  <label>Object</label>
+                  <input type="radio" name="keyType" value="object" checked />
+                </div>
+                <div>
+                  <label>Value</label>
+                  <input type="radio" name="keyType" value="value" />
+                </div>
+                <button id="storeNewKeySubmitButton">Add</button>
+                <button id="storeCancelNewKeyButton">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span>Value</span>
+            <div id="storeValueContainer">
+              <input id="storeValueInput" type="text" />
+              <button id="storeValueUpdateButton">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/static/main.js" type="application/javascript"></script>
+  </body>
+</html>

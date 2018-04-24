@@ -1,0 +1,32 @@
+header {
+
+}
+
+.flex-wrapper-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-wrapper-center > div {
+  max-width: 500px;
+}
+
+.flex-wrapper-eq-col {
+  display: flex;
+}
+.flex-wrapper-eq-col > div {
+  flex: 1;
+}
+
+.error {
+  color: red;
+  font-size; .8em;
+}
+
+.hidden {
+  display: none;
+}
+
+.store-key-active {
+  color: blue;
+}
