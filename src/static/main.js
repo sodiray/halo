@@ -129,6 +129,8 @@ AuthController.prototype.onInputEnter = function(e) {
 function StoreController(elem) {
   Controller.call(this, elem);
 
+  this._updateLoadingTimeout = 750;
+
   this.current = Doman.Query.id('storeCurrentOutlet');
   this.valueContainer = Doman.Query.id('storeValueContainer');
   this.valueInput = Doman.Query.id('storeValueInput').asInput();
@@ -151,6 +153,7 @@ function StoreController(elem) {
   this.newKeyButton.click(this.onNewKeyButtonClick.bind(this));
   this.cancelNewKeyButton.click(this.onCancelNewKeyButtonClick.bind(this));
   this.newKeySubmitButton.click(this.onNewKeySubmitButtonClick.bind(this));
+  this.valueInput.change(this.onNewValueInputChange.bind(this));
 }
 StoreController.prototype = Object.create(Controller.prototype);
 StoreController.prototype.onCurrentSelect = function(e) {
@@ -167,11 +170,21 @@ StoreController.prototype.onNewKeyButtonClick = function(e) {
   this.newKeyButton.hide();
   this.newKeyForm.show();
 };
+StoreController.prototype.onNewValueInputChange = function(e) {
+  if (this.valueInput.value() == this.valueInput.data('value')) {
+    this.updateButton.addClass('link-disabled');
+  } else {
+    this.updateButton.removeClass('link-disabled');
+  }
+};
 StoreController.prototype.onNewKeySubmitButtonClick = function(e) {
-  // TODO: Validate input value
-  var newKeyName = this.newKeyInput.elem.value;
+  var newKeyName = this.newKeyInput.value();
   var newKeyType = this.newKeyTypeRadios.value();
   var initValue = newKeyType === 'object' ? {} : '';
+  // Incase were on a selected key in the key view we
+  // have to back backward once to get to the parent
+  // object we want to add the property too
+  if (this._currentKey) LocationService.backward();
   HaloService.put(LocationService.getNext(newKeyName), initValue)
     .then(function() {
       this.newKeyForm.hide();
@@ -196,12 +209,33 @@ StoreController.prototype.onBack = function(e) {
   this._updateUI();
 };
 StoreController.prototype.onUpdate = function(e) {
-  var value = this.valueInput.value;
+  var value = this.valueInput.value();
+  if (value == this.valueInput.data('value')) {
+    return;
+  }
+  this._showLoadingUpdate();
   HaloService.put(LocationService.getLocation(), value)
     .then(function() {
-      // TODO: Update UI with success message
-      console.log("Successfully updated key");
-    });
+      this._removeLoadingUpdate();
+    }.bind(this))
+    .catch(function() {
+      this._showUpdateError();
+    }.bind(this));
+};
+StoreController.prototype._showLoadingUpdate = function() {
+  this._lastUpdateTimestamp = Date.now();
+  this.updateButton.elem.innerText = "Updating....";
+};
+StoreController.prototype._removeLoadingUpdate = function() {
+  var timePassed = Date.now() - this._lastUpdateTimestamp;
+  if (timePassed < this._updateLoadingTimeout) {
+    setTimeout(this._removeLoadingUpdate.bind(this), this._updateLoadingTimeout - timePassed);
+    return;
+  }
+  this.updateButton.elem.innerText = "Update";
+};
+StoreController.prototype._showUpdateError = function() {
+  this.updateButton.elem.innerText = "Error updating";
 };
 StoreController.prototype.didGetFocus = function() {
   this._updateUI();
@@ -246,7 +280,8 @@ StoreController.prototype._renderCurrent = function(currentKeys) {
   this.current.elem.innerHTML = liElems;
 };
 StoreController.prototype._renderValue = function(value) {
-  this.valueInput.elem.value = value;
+  this.valueInput.value(value);
+  this.valueInput.data('value', value);
   this.updateButton.show();
   this.valueContainer.visible();
   Doman.Query.data('store-key', this._currentKey)
@@ -255,7 +290,8 @@ StoreController.prototype._renderValue = function(value) {
     });
 };
 StoreController.prototype._clearValue = function(value) {
-  this.valueInput.value = '';
+  this.valueInput.value(null);
+  this.valueInput.data('value', null);
   this.updateButton.hide();
   this.valueContainer.invisible();
   Doman.Query.class('store-key-active')
@@ -409,6 +445,15 @@ Doman.Elem.prototype.asButton = function() {
 Doman.Elem.prototype.asInput = function() {
   return new Doman.Input(this.elem);
 };
+Doman.Elem.prototype.data = function(attributeName, value) {
+  // If value provided then setting
+  if (value != undefined) {
+    this.elem.setAttribute('data-' + attributeName, value);
+  } else {
+  // Else get the current value
+    return this.elem.getAttribute('data-' + attributeName);
+  }
+};
 
 /*
 *   Button
@@ -434,6 +479,20 @@ Doman.Input.prototype.enter = function(cb) {
 };
 Doman.Input.prototype.clear = function() {
   this.elem.value = null;
+};
+Doman.Input.prototype.change = function(cb) {
+  if (this.elem.addEventListener) {
+      this.elem.addEventListener('change', cb, false);
+  } else if (this.elem.attachEvent) {
+      this.elem.attachEvent('onchange', cb);
+  }
+};
+Doman.Input.prototype.value = function(value) {
+  // If value provided setting
+  if (value !== undefined) {
+    this.elem.value = value;
+  }
+  return this.elem.value;
 };
 
 /*

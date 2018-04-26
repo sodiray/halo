@@ -8,47 +8,60 @@
   <body>
     <header><h1>Halo</h1></header>
     <div class="flex-wrapper-center">
-      <div class="auth-view" data-view="auth">
+      <div class="view auth-view" data-view="auth">
         <h2>Secret</h2>
-        <span id="authError" class="error hidden">Incorrect Secret</span>
-        <input type="password" id="authPassword" placeholder="mylittlesecret"/>
-        <button id="authSubmit">Authenticate</button>
+        <div class="flex-stretch">
+          <span id="authError" class="error hidden">Incorrect Secret</span>
+        </div>
+        <input class="input" type="password" id="authPassword" placeholder="mylittlesecret"/>
+        <div class="flex-stretch">
+          <button class="btn" id="authSubmit">Authenticate</button>
+        </div>
       </div>
-      <div class="store-view" data-view="store">
+      <div class="view store-view" data-view="store">
         <h2>KV Store</h2>
-        <div>
+        <div class="breadcrumb">
           <span id="storeBreadcrumb"></span>
         </div>
-        <div class="flex-wrapper-eq-col">
+        <div class="key-value-wrapper flex-wrapper-eq-col">
           <div class="store-current">
-            <span>Current</span>
+            <h3>Key</h3>
             <div>
-              <button id="storeCurrentBackButton">Back</button>
-              <ul id="storeCurrentOutlet">
+              <button class="link" id="storeCurrentBackButton">Back</button>
+              <ul class="key-list" id="storeCurrentOutlet">
                 <!-- Rendered by template -->
                 <!-- <li>property</li> -->
               </ul>
-              <button id="storeNewKeyButton">New</button>
+              <button class="new-key-btn btn" id="storeNewKeyButton">New</button>
               <div id="storeNewKeyForm">
-                <input id="storeNewKeyInput" type="text"/>
-                <div>
-                  <label>Object</label>
-                  <input type="radio" name="keyType" value="object" checked />
+                <h4>New Property</h4>
+                <div class="radio-form-container">
+                  <div>
+                    <input type="radio" id="radio_object" name="keyType" value="object" checked />
+                    <label for="radio_object">Object</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="radio_value" name="keyType" value="value" />
+                    <label for="radio_value">Value</label>
+                  </div>
                 </div>
-                <div>
-                  <label>Value</label>
-                  <input type="radio" name="keyType" value="value" />
+                <div class="add-input-container input-container flex-wrapper-eq-col">
+                  <input id="storeNewKeyInput" type="text" placeholder="propertyName"/>
                 </div>
-                <button id="storeNewKeySubmitButton">Add</button>
-                <button id="storeCancelNewKeyButton">Cancel</button>
+                <div class="add-confirm-cancel-buttons-container flex-wrapper-eq-col">
+                  <button class="btn-secondary" id="storeCancelNewKeyButton">Cancel</button>
+                  <button class="btn" id="storeNewKeySubmitButton">Add</button>
+                </div>
               </div>
             </div>
           </div>
           <div>
-            <span>Value</span>
+            <h3>Value</h3>
             <div id="storeValueContainer">
-              <input id="storeValueInput" type="text" />
-              <button id="storeValueUpdateButton">Update</button>
+              <div class="input-container">
+                <input id="storeValueInput" class="disabled" type="text" placeholder="newValue"/>
+              </div>
+              <button class="link link-disabled" id="storeValueUpdateButton">Update</button>
             </div>
           </div>
         </div>

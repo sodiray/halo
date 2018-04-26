@@ -1,32 +1,222 @@
-header {
-
+/*
+* RESETS
+*/
+body, div, ul, li, span, button,
+input, label, h3, h2, h1, header {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  background-image: url('/static/stars.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  min-height: 100vh;
+  color: #333333;
+}
+
+/*
+* LAYOUT
+*/
 .flex-wrapper-center {
   display: flex;
   justify-content: center;
 }
-
-.flex-wrapper-center > div {
-  max-width: 500px;
+.flex-stretch {
+  flex-direction: column;
+  display: flex;
+  align-items: stretch;
 }
-
 .flex-wrapper-eq-col {
   display: flex;
 }
-.flex-wrapper-eq-col > div {
+.flex-wrapper-eq-col > * {
   flex: 1;
 }
 
+/*
+* GENERICS
+*/
 .error {
   color: red;
   font-size; .8em;
 }
-
 .hidden {
   display: none;
 }
+.btn {
+  padding: 5px;
+  background-color: #333333;
+  transition: background-color .2s ease;
+  color: #ffffff;
+  border-radius: 4px;
+}
+.btn:not(.disabled):hover {
+  background-color: #f93b8e;
+  cursor: pointer;
+}
+.link {
+  // padding: 5px;
+}
+.link:not(.link-disabled):hover {
+  color: #f93b8e;
+  cursor: pointer;
+}
+.btn-secondary {
+  padding: 5px;
+  transition: background-color .2s ease;
+  border: 1px solid #333333;
+  color: #333333;
+  border-radius: 4px;
+}
+.btn-secondary:not(.disabled):hover {
+  background-color: #333333;
+  cursor: pointer;
+  color: #ffffff;
+}
+.input-container {
+  border-bottom: 2px solid #333333;
+  margin: 10px 0;
+}
+.input-container > input {
+  padding: 10px;
+}
 
-.store-key-active {
-  color: blue;
+
+/*
+* HEADER
+*/
+header {
+  padding: 10px;
+  border-bottom: 1px solid #333333;
+  background-color: #ffffff;
+}
+
+/*
+* VIEWS
+*/
+.view {
+  padding: 50px;
+  background-color: #ffffff;
+  margin-top: 50px;
+  // box-shadow: 1px 1px 10px 10px rgba(256, 256, 256, 0.5);
+}
+.view > h2 {
+  padding-bottom: 10px;
+  // margin-bottom: 20px;
+  // border-bottom: 1px solid #333333;
+}
+
+/*
+* AUTH VIEW
+*/
+.view.auth-view {
+
+}
+.view.auth-view input {
+  margin-bottom: 10px;
+}
+
+/*
+* STORE VIEW
+*/
+.view.store-view {
+
+}
+.view.store-view h3 {
+  margin-bottom: 5px;
+}
+.view.store-view ul {
+  list-style-type: none;
+}
+.view.store-view .breadcrumb {
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  margin-bottom: 10px;
+}
+.view.store-view .breadcrumb > span {
+  font-size: .7em;
+  color: #444444;
+  line-height: 3em;
+}
+.view.store-view button.new-key-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+}
+.view.store-view ul.key-list {
+  margin: 10px 0;
+}
+.view.store-view ul.key-list > li {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #333333;
+  margin-bottom: 10px;
+}
+.view.store-view ul.key-list > li:last-child {
+  margin-bottom: 0;
+}
+.view.store-view ul.key-list > li.store-key-active {
+  border-color: #f93b8e;
+  color: #f93b8e;
+}
+.view.store-view ul.key-list > li:not(.store-key-active):hover {
+  cursor: pointer;
+  color: #f93b8e;
+  border-color: #f93b8e;
+}
+.view.store-view div.key-value-wrapper {
+
+}
+.view.store-view div.key-value-wrapper > div {
+  min-width: 200px;
+}
+.view.store-view div.key-value-wrapper > div:first-child {
+  margin-right: 30px;
+}
+.view.store-view .radio-form-container {
+  display: flex;
+}
+.view.store-view .radio-form-container > div {
+  position: relative;
+  margin-right: 10px;
+  display: flex;
+  flex: 1;
+}
+.view.store-view .radio-form-container > div:last-child {
+  margin-right: 0;
+}
+.view.store-view .radio-form-container > div > input {
+  position: absolute;
+  visibility: hidden;
+}
+.view.store-view .radio-form-container > div > label {
+  border: 1px solid #333333;
+  border-radius: 4px;
+  color: #333333;
+  padding: 5px;
+  text-align: center;
+  flex: 1;
+}
+.view.store-view .radio-form-container > div > label:hover {
+  cursor: pointer;
+}
+.view.store-view .radio-form-container > div > input:checked + label {
+  background-color: #f93b8e;
+  border: none;
+  color: #ffffff;
+}
+.view.store-view .add-confirm-cancel-buttons-container > button {
+  margin-right: 10px;
+}
+.view.store-view .add-confirm-cancel-buttons-container > button:last-child {
+  margin-right: 0;
+}
+.view.store-view .add-input-container {
+  margin-bottom: 20px;
 }
