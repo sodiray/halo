@@ -38,7 +38,7 @@ class Halo {
 
     let key = req.params.key || '';
     key = key == '' ? 'halo' : 'halo.' + key;
-    let value = req.body;
+    let value = req.body.value;
 
     this.store.put(key, value);
 
