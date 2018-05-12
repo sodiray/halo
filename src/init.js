@@ -31,11 +31,7 @@ function initDataFromFile(store, file) {
     return;
   }
 
-  let key = process.env.HALO_INIT_KEY ?
-    'halo.' + process.env.HALO_INIT_KEY :
-    'halo';
-
-  store.put(key, value);
+  store.put('halo', value);
 
   console.log(`INIT: Seeded store with data from ${initFileName}`);
 }
