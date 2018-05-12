@@ -31,7 +31,7 @@ function initDataFromFile(store, file) {
     return;
   }
 
-  store.put('halo', value);
+  store.put(`halo.${Object.keys(value)[0]}`, value);
 
   console.log(`INIT: Seeded store with data from ${initFileName}`);
 }
