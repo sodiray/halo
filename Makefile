@@ -10,8 +10,7 @@ build:
 tag:
 	docker tag halo_image raykrow/halo:latest
 
-login:
-	docker login --username=raykrow
-
 push:
 	docker push raykrow/halo:latest
+
+update: build tag push
