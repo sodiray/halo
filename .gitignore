@@ -1,3 +1,5 @@
 node_modules
 configuration.json
 init.d
+dist
+temp
