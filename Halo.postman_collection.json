@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "0adeff9c-de19-4171-a60a-504f6d2f2604",
+		"name": "Halo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Entire Store",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{lambda_url}}/halo",
+					"host": [
+						"{{lambda_url}}"
+					],
+					"path": [
+						"halo"
+					]
+				},
+				"description": "By not adding any key query param halo will return the entire store to you."
+			},
+			"response": []
+		},
+		{
+			"name": "Set Value -> api",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"value\": {\n\t\t\"database\": {\n\t\t\t\"connection_string\": \"hhrtp...:808\",\n\t\t\t\"suck\": \"no\"\n\t\t},\n\t\t\"use_go\": false,\n\t\t\"log_level\": \"DEBUG\",\n\t\t\"elasticsearch\": {\n\t\t\t\"host\": \"htrp:...:4747\"\n\t\t}\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{lambda_url}}/halo?key=api",
+					"host": [
+						"{{lambda_url}}"
+					],
+					"path": [
+						"halo"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "api"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Value -> api",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"value\": {\n\t\t\"database\": {\n\t\t\t\"connection_string\": \"hhrtp...:808\",\n\t\t\t\"suck\": \"no\"\n\t\t},\n\t\t\"use_go\": false,\n\t\t\"log_level\": \"DEBUG\",\n\t\t\"elasticsearch\": {\n\t\t\t\"host\": \"htrp:...:4747\"\n\t\t}\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{lambda_url}}/halo?key=api",
+					"host": [
+						"{{lambda_url}}"
+					],
+					"path": [
+						"halo"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "api"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Value -> api.database.host",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"value\": {\n\t\t\"database\": {\n\t\t\t\"connection_string\": \"hhrtp...:808\",\n\t\t\t\"suck\": \"no\"\n\t\t},\n\t\t\"use_go\": false,\n\t\t\"log_level\": \"DEBUG\",\n\t\t\"elasticsearch\": {\n\t\t\t\"host\": \"htrp:...:4747\"\n\t\t}\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{lambda_url}}/halo?key=api.database.connection_string",
+					"host": [
+						"{{lambda_url}}"
+					],
+					"path": [
+						"halo"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "api.database.connection_string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Value -> api.database.host",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"value\": \"dynamodb:8000\"\n}"
+				},
+				"url": {
+					"raw": "{{lambda_url}}/halo?key=api.database.connection_string",
+					"host": [
+						"{{lambda_url}}"
+					],
+					"path": [
+						"halo"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "api.database.connection_string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Value -> api.use_go",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{lambda_url}}/halo?key=api.use_go",
+					"host": [
+						"{{lambda_url}}"
+					],
+					"path": [
+						"halo"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "api.use_go"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
